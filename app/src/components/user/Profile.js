@@ -39,8 +39,6 @@ const Profile = () => {
         <div>hello</div>
         </>
       )
-      console.log(htmlArray)
-      console.log(dataObj)
     }
     
     
