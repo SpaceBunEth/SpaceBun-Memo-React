@@ -1,13 +1,8 @@
-import './App.css';
-import { Outlet } from "react-router-dom";
-import { GlobalProvider } from './context/GlobalState';
-import NavBar from './components/NavBar';
-
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import axios from "axios"
 
-function App() {
+function Thread() {
 
 const API_URL = "https://8000-spacebuneth-spacebunmem-rr566be32ph.ws-us77.gitpod.io/api/";
 const TIMELINE_URL = "timeline/?response_to__isnull=True"
@@ -45,15 +40,12 @@ function mapObj(){
   return htmlArray
   
 }
-
-  return (
-    <GlobalProvider>
-      <NavBar />
-      <h2>Home Page</h2>
-      {/* <p>{mapObj()}</p> */}
-      <Outlet />
-    </GlobalProvider>
+return (
+    <>
+      <h2>Timeline</h2>
+      <p>{mapObj()}</p>
+    </>
   );
 }
 
-export default App;
+export default Thread;

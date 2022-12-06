@@ -10,6 +10,8 @@ import {
 import Login from './components/user/Login';
 import Register from './components/user/Register';
 import Profile from './components/user/Profile';
+import EditProfile from './components/user/EditProfile';
+import Timeline from './components/Timeline'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -21,6 +23,10 @@ root.render(
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="edit-profile" element={<EditProfile />} />
+          <Route path="timeline" element={<Timeline />} />
+
+
         </Route>
       </Routes>
     </Router>
