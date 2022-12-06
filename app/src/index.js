@@ -13,6 +13,7 @@ import Profile from './components/user/Profile';
 import EditProfile from './components/user/EditProfile';
 import Timeline from './components/Timeline';
 import Thread from './components/Thread';
+import Post from './components/Post';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -27,6 +28,7 @@ root.render(
           <Route path="edit-profile" element={<EditProfile />} />
           <Route path="timeline" element={<Timeline />} />
           <Route path="thread" element={<Thread />} />
+          <Route path="post" element={<Post />} />
 
 
         </Route>

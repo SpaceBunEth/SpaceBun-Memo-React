@@ -16,6 +16,9 @@ function NavBar() {
         <li>
           <Link to="/thread">Thread</Link>
         </li>
+        <li>
+          <Link to="/post">Post</Link>
+        </li>
         {
           !state.currentUser && (
             <li>

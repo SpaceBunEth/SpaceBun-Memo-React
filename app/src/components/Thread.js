@@ -60,7 +60,7 @@ return (
     <>
       <h2>Thread</h2>
       <h3>{mainThread()}</h3>
-      <p>{mapObj()}</p>
+      <div>{mapObj()}</div>
 
     </>
   );

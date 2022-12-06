@@ -43,7 +43,7 @@ function mapObj(){
 return (
     <>
       <h2>Timeline</h2>
-      <p>{mapObj()}</p>
+      <div>{mapObj()}</div>
     </>
   );
 }
