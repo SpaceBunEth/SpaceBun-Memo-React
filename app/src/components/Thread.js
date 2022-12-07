@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import axios from "axios"
 import { useGlobalState } from "../context/GlobalState";
 
+import Comment from './Comment';
+
 function Thread() {
   const [ state, dispatch ] = useGlobalState();
+  const [reply, setReply] = useState(false);
 
 const API_URL = "https://8000-spacebuneth-spacebunmem-rr566be32ph.ws-us77.gitpod.io/api/";
 const TIMELINE_URL = "timeline/?response_to="
@@ -35,6 +38,13 @@ function mainThread(){
       )
     
   }
+  threadArray.push(<button onClick={()=>{
+    if(reply){
+      setReply(false)
+    }else{
+      setReply(true)
+    }
+  }}>Reply</button>)
   return threadArray
   
 }
@@ -60,7 +70,9 @@ return (
     <>
       <h2>Thread</h2>
       <h3>{mainThread()}</h3>
+      { reply ? <Comment props={state.currentThread}/> : <></> }
       <div>{mapObj()}</div>
+      
 
     </>
   );

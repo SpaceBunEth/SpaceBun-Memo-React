@@ -12,7 +12,7 @@ import React, {
   const initialState = {
     currentUser: user ? jwtDecode(user.access) : null,
     currentUserToken: user ? user.access : null,
-    currentThread: null
+    currentThread: 0,
     
   }
   
