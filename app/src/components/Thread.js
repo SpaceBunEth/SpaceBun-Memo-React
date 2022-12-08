@@ -8,7 +8,11 @@ import { API_URL } from "../services/auth.constants";
 
 function Thread() {
   const [ state, dispatch ] = useGlobalState();
-  const [reply, setReply] = useState(false);
+
+  console.log('reply state', state.postReply)
+
+
+  
 
 
 const TIMELINE_URL = "timeline/?response_to="
@@ -41,10 +45,10 @@ function mainThread(){
     
   }
   threadArray.push(<button onClick={()=>{
-    if(reply){
-      setReply(false)
+    if(state.postReply == true){
+      dispatch({...state, postReply:false})
     }else{
-      setReply(true)
+      dispatch({...state, postReply:true})
     }
   }}>Reply</button>)
   return threadArray
@@ -72,7 +76,7 @@ return (
     <>
       <h2>Thread</h2>
       <h3>{mainThread()}</h3>
-      { reply ? <Comment props={state.currentThread}/> : <></> }
+      { state.postReply == true ? <Comment props={state.currentThread}/> : <></> }
       <div>{mapObj()}</div>
       
 

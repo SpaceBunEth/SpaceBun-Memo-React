@@ -5,13 +5,12 @@ import { Link } from "react-router-dom";
 import axios from "axios"
 import { useGlobalState } from "../context/GlobalState";
 import request from '../services/api.request'
+import { useNavigate } from "react-router-dom";
+
 
 function Comment(props){
-    console.log('Comment')
-    console.log(props)
     const [ state, dispatch ] = useGlobalState();
     const [body, setBody] = useState('');
-
 
 
     async function makeComment() {
@@ -53,7 +52,11 @@ function Comment(props){
                 name="body"/>
             
             <br/>
-            <a  className="btn btn-primary" onClick={() => {makeComment()}}>Reply to Thread</a>
+            <a  className="btn btn-primary" onClick={() => {
+                makeComment() 
+                dispatch({...state, postReply:false})
+            
+            }}>Reply to Thread</a>
         </div>
         </div>
         </>

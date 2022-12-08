@@ -13,6 +13,8 @@ import React, {
     currentUser: user ? jwtDecode(user.access) : null,
     currentUserToken: user ? user.access : null,
     currentThread: 1,
+    Action: 0,
+    postReply:false
     
   }
   
