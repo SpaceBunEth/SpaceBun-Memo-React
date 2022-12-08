@@ -18,6 +18,8 @@ import EditProfile from './components/user/EditProfile';
 import Timeline from './components/Timeline';
 import Thread from './components/Thread';
 import Post from './components/Post';
+import Search from './components/Search';
+import UserProfile from './components/UserProfile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -33,6 +35,8 @@ root.render(
           <Route path="timeline" element={<Timeline />} />
           <Route path="thread" element={<Thread />} />
           <Route path="post" element={<Post />} />
+          <Route path='search' element={<Search />} />
+          <Route path='userprofile' element={<UserProfile/>} />
 
 
         </Route>

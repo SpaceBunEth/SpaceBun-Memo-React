@@ -3,12 +3,12 @@ import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import axios from "axios"
 import { useGlobalState } from "../context/GlobalState";
+import { API_URL } from "../services/auth.constants";
 
 function Timeline() {
 
   const [ state, dispatch ] = useGlobalState();
 
-const API_URL = "https://8000-spacebuneth-spacebunmem-rr566be32ph.ws-us77.gitpod.io/api/";
 const TIMELINE_URL = "timeline/?response_to__isnull=True"
 const userURL = API_URL + TIMELINE_URL;
 

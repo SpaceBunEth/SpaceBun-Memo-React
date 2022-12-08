@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import { useGlobalState } from "../../context/GlobalState";
 import axios from "axios"
+import { API_URL } from "../../services/auth.constants";
 
 const Profile = () => {
   const [ state, dispatch ] = useGlobalState();
 
-  const API_URL = "https://8000-spacebuneth-spacebunmem-rr566be32ph.ws-us77.gitpod.io/api/";
   const userID = state.currentUser.user_id
   const USER_PROFILE = "users/"+ userID +"/"
   const userURL = API_URL + USER_PROFILE;
@@ -43,7 +43,7 @@ const Profile = () => {
     <div>
       <h1>{state.currentUser.user_id}</h1>
       <h1>{mapObj()}</h1>
-      <Link to="/edit-profile">Edit Profile</Link>
+      <Link to="/edit-profile" props={state.currentUser.user_id}>Edit Profile</Link>
       
 
     </div>

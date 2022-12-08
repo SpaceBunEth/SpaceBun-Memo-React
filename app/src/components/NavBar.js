@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
 import { useGlobalState } from "../context/GlobalState";
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
   const [ state, dispatch ] = useGlobalState();
+  let navigate = useNavigate();
+
+  function logout(){
+    localStorage.clear()
+    navigate('/')
+  }
 
   return (
     <nav>
@@ -19,6 +26,13 @@ function NavBar() {
         <li>
           <Link to="/post">Post</Link>
         </li>
+        <li>
+          <Link to="/search">Search</Link>
+        </li>
+        <li>
+          <Link to="/userprofile">User Profile</Link>
+        </li>        
+
         {
           !state.currentUser && (
             <li>
@@ -35,9 +49,14 @@ function NavBar() {
         }
         {
           state.currentUser && (
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
+            <>
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li>
+                <Link to="/" onClick={logout}>LogOut</Link>
+              </li>
+            </>
           )
         }
       </ul>

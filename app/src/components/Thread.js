@@ -4,14 +4,16 @@ import axios from "axios"
 import { useGlobalState } from "../context/GlobalState";
 
 import Comment from './Comment';
+import { API_URL } from "../services/auth.constants";
 
 function Thread() {
   const [ state, dispatch ] = useGlobalState();
   const [reply, setReply] = useState(false);
 
-const API_URL = "https://8000-spacebuneth-spacebunmem-rr566be32ph.ws-us77.gitpod.io/api/";
+
 const TIMELINE_URL = "timeline/?response_to="
 let threadID = state.currentThread.id
+console.log('thread id',threadID)
 const userURL = API_URL + TIMELINE_URL + threadID;
 
 let dataObj = {}
