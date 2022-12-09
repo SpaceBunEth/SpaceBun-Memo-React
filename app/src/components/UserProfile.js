@@ -63,7 +63,6 @@ function UserProfile(props) {
         <>
             Other User Profile
             <h1>{mapObj()}</h1>
-            <button>Follow</button>
             <h3>{getUserPosts()}</h3>
 
         </>

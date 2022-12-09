@@ -14,7 +14,8 @@ import React, {
     currentUserToken: user ? user.access : null,
     currentThread: 1,
     Action: 0,
-    postReply:false
+    postReply:false,
+    userSearch: null
     
   }
   

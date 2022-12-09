@@ -6,12 +6,54 @@ import axios from "axios"
 import { useGlobalState } from "../context/GlobalState";
 import request from '../services/api.request'
 import { useNavigate } from "react-router-dom";
-
+import { API_URL } from "../services/auth.constants";
 
 function Comment(props){
     const [ state, dispatch ] = useGlobalState();
     const [body, setBody] = useState('');
 
+
+
+    const TIMELINE_URL = "comments/?response_to="
+    let threadID = state.currentThread.id
+    const userURL = TIMELINE_URL + threadID;
+
+    let dataObj = {}
+    const [postUser, setPostUser] = React.useState(null);
+
+
+    const htmlArray = []
+
+
+    useEffect(() => {
+        async function getComments(){
+            let options = {
+                url: userURL,
+                method: 'GET',
+
+            }
+            let resp = await request(options)
+            setPostUser(resp.data)
+        }
+        getComments()
+    }, [state.postReply])
+
+
+    
+    function mapObj(){
+    for (const key in postUser){
+        for(const j in postUser[key]){
+        htmlArray.push(
+            <div key={key + j + ":" + postUser[key][j]}>
+            <div>{j + ":" + postUser[key][j]}</div>
+            </div>
+        )
+        }
+        htmlArray.push(<Link to="/profile">Profile<br/></Link>)
+    }
+    return htmlArray
+    
+    }
 
     async function makeComment() {
         let options = {
@@ -31,11 +73,11 @@ function Comment(props){
                 
     }
 
-    console.log('comment test', state.currentUser)
-    console.log('props.id',props.props.id)
 
-    return(
-        <>
+
+    let replyArr = []
+    replyArr.push(        
+    
         <div className="card">
         <div className="card-header">
             UserID: {state.currentUser.user_id}
@@ -55,10 +97,17 @@ function Comment(props){
             <a  className="btn btn-primary" onClick={() => {
                 makeComment() 
                 dispatch({...state, postReply:false})
+                
             
             }}>Reply to Thread</a>
         </div>
         </div>
+    );
+
+    return(
+        <>
+        { state.postReply == true ? replyArr: <></>}
+        <div>{mapObj()}</div>
         </>
     );
 }

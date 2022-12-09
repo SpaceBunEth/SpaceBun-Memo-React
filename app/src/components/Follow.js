@@ -1,6 +1,8 @@
 function Follow(){
 
     console.log('FOLLOW FUNCTIONS')
+
+    
     
     return(
         <>

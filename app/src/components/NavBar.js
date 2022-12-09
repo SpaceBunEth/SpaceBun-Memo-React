@@ -17,21 +17,27 @@ function NavBar() {
         <li>
           <Link to="/">Home</Link>
         </li>
+        {/* App.js left and right button offcanvas panel */}
+        <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Enable body scrolling</button>
+        <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
+
         <li>
           <Link to="/timeline">Timeline</Link>
         </li>
-        <li>
-          <Link to="/thread">Thread</Link>
-        </li>
-        <li>
-          <Link to="/post">Post</Link>
-        </li>
-        <li>
-          <Link to="/search">Search</Link>
-        </li>
-        <li>
-          <Link to="/userprofile">User Profile</Link>
-        </li>        
+
+        {
+          state.currentUser && (
+            <>
+              <li>
+                <Link to="/post">Post</Link>
+              </li>
+              <li>
+                <Link to="/search">Search</Link>
+              </li>
+            </>
+            )
+          }
+      
 
         {
           !state.currentUser && (
