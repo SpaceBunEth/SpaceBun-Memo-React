@@ -14,34 +14,37 @@ function SearchResult(props) {
 
         for (const key in userList){
             console.log('key',key, 'props+key',userList[key])
-            for (const j in userList[key]){
-                console.log('j',j,':',userList[key][j])
-                htmlArray.push(
-                    <div key={key + j + ":" + userList[key][j]}>
-                    <div>{j + ":" + userList[key][j]}</div>
-                    </div>
-                )
-            }
+
             htmlArray.push(
-                <Link to="/userprofile" onClick={() => {dispatch({...state, VisitUser : userList[key]})}}>Visit Profile</Link>
+                <>
+                    <div className="card mb-3">
+                        {/* <img src="../1741329.png"  className="card-img-top" alt="..."/> */}
+                            <div className="card-body">
+                            <p className="card-text"><small className="text-muted">UserID: {userList[key].id}</small></p>
+                            
+                            <h5 className="card-title">Username: {userList[key].username}</h5>
+                            <p className="card-text">Bio: {userList[key].bio}</p>
+                            <p className="card-text"><small className="text-muted">Joined {userList[key].date_joined}</small></p>
+                            <Link to="/userprofile" onClick={() => {dispatch({...state, VisitUser : userList[key]})}}><button className="btn btn-primary">Visit Profile</button></Link>
+                        </div>
+                    </div>
+                </>
+            )
+            htmlArray.push(
+                
             )
         }
-        //   for (const key in props){
-        //     console.log(props[0])
-        //     htmlArray.push(
-        //       <div key={key + ":" + props[key]}>
-        //       <div>{key + ":" + props[key]}</div>
-        //       </div>
-        //     )
-        //   }
-        //   return htmlArray
           
     }
     displayUsers()
 
+    console.log(userList)
+
     return (
         <>
         SearchResult
+        
+
         {htmlArray}
         </>
     );

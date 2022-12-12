@@ -5,6 +5,7 @@ import { useGlobalState } from "../../context/GlobalState";
 import jwtDecode from "jwt-decode";
 
 const Login = () => {
+  
   let navigate = useNavigate();
 
   const [ state, dispatch ] = useGlobalState();
@@ -27,6 +28,7 @@ const Login = () => {
           currentUser: data
         })
         navigate('/profile')
+        window.location.reload();
       });
   }
 

@@ -12,7 +12,8 @@ import React, {
   const initialState = {
     currentUser: user ? jwtDecode(user.access) : null,
     currentUserToken: user ? user.access : null,
-    currentThread: 1,
+    currentThread: null,
+    mainUser: null,
     Action: 0,
     postReply:false,
     userSearch: null

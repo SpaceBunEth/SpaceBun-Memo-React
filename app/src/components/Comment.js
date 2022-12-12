@@ -7,6 +7,7 @@ import { useGlobalState } from "../context/GlobalState";
 import request from '../services/api.request'
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../services/auth.constants";
+import '../App.css';
 
 function Comment(props){
     const [ state, dispatch ] = useGlobalState();
@@ -42,14 +43,42 @@ function Comment(props){
     
     function mapObj(){
     for (const key in postUser){
-        for(const j in postUser[key]){
-        htmlArray.push(
-            <div key={key + j + ":" + postUser[key][j]}>
-            <div>{j + ":" + postUser[key][j]}</div>
+        htmlArray.push(        
+            <div className="row gx-5 g-2">
+              <div className="col-8">
+    
+                <div className="card text-center m-2">
+
+                  <div className="mybg2">
+                        <div className="card-header">
+                        Comment Left By: 
+                        
+                        <Link to="/userprofile" onClick={() => {dispatch({...state, VisitUser : postUser[key].author})}}>{postUser[key].author.username}</Link>, 
+                        
+                            
+            
+                        </div>
+                  </div>  
+
+
+                    <div className="nav-flex-container-style">
+                        <div className="card-body">
+                            <p className="card-text">{postUser[key].body}</p>
+                        </div>
+                    </div>
+
+                  <div className="mybg2">
+                        <div className="card-footer text-muted p-0">
+                            <p className="m-0"><small>Created: {postUser[key].created}</small></p>
+                        </div>
+                  </div>  
+
+
+                </div>
+                
+              </div>
             </div>
         )
-        }
-        htmlArray.push(<Link to="/profile">Profile<br/></Link>)
     }
     return htmlArray
     
@@ -65,8 +94,8 @@ function Comment(props){
                 like: 0,
                 dislike: 0,
                 author: state.currentUser.user_id,
-                topic: null,
-                response_to: props.props.id
+                topic: 6,
+                response_to: state.currentThread.id
             }
         }
         let resp = await request(options)
@@ -75,39 +104,49 @@ function Comment(props){
 
 
 
+
     let replyArr = []
     replyArr.push(        
     
         <div className="card">
-        <div className="card-header">
-            UserID: {state.currentUser.user_id}
-        </div>
-        <div className="card-body">
-            {/* <h5 className="card-title">{state.currentUser.}</h5> */}
-            <label htmlFor="body">Reply:</label><br/>
-            <input 
-                onChange={(e)=>{
-                    setBody(e.target.value)
-                }}
-                type="text" 
-                id="body" 
-                name="body"/>
-            
-            <br/>
-            <a  className="btn btn-primary" onClick={() => {
-                makeComment() 
-                dispatch({...state, postReply:false})
+         <div className='mybg2'> 
+            <div className="card-header">
+                UserID: {state.currentUser.user_id}
+            </div>
+        </div>  
+
+        <div className="nav-flex-container-style">
+            <div className="card-body">
+                {/* <h5 className="card-title">{state.currentUser.}</h5> */}
+                <label htmlFor="body">Reply:</label><br/>
+                <input 
+                    onChange={(e)=>{
+                        setBody(e.target.value)
+                    }}
+                    type="text" 
+                    id="body" 
+                    name="body"/>
                 
-            
-            }}>Reply to Thread</a>
+                <br/>
+                <button  className="btn btn-outline-secondary nav-button p-2" onClick={() => {
+                    makeComment() 
+                    dispatch({...state, postReply:false})
+                    
+                
+                }}><b>Submit</b></button>
+            </div>
         </div>
+
         </div>
     );
 
     return(
         <>
+        
+        <div className="container px-5 text-center">
         { state.postReply == true ? replyArr: <></>}
         <div>{mapObj()}</div>
+        </div>
         </>
     );
 }

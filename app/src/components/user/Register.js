@@ -24,7 +24,8 @@ const Register = () => {
     e.preventDefault();
     AuthService.register(user)
      .then(() => {
-        navigate('/profile')
+        navigate('/login')
+        window.location.reload();
      })
   }
 

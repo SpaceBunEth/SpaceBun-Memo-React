@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useGlobalState } from "../context/GlobalState";
 import React, { useState, useEffect } from "react";
 import request from '../services/api.request'
+import { useNavigate } from 'react-router-dom';
 
 
 function Post() {
@@ -10,6 +11,8 @@ function Post() {
     const [state, dispatch ] = useGlobalState();
     const [topics, setTopic] = useState([]);
     const [topicName, setTopicName] = useState("Topic")
+
+    let navigate = useNavigate();
 
 
 
@@ -29,6 +32,9 @@ function Post() {
     let topicArr = []
 
     for(const x of topics) {
+        if (x.categories == 'Reply'){
+        
+        }else{
         topicArr.push(
             <li><a className="dropdown-item" onClick={() => {
                 setCurrentTopic(x.id)
@@ -36,6 +42,8 @@ function Post() {
             
             }} key={x.categories}>{x.categories}</a></li>
             )
+        }
+        
         
     }
 
@@ -52,7 +60,9 @@ function Post() {
                 topic: currentTopic,
                 response_to: null 
             }
+            
         }
+        console.log('options',options)
         let resp = await request(options)
                 
     }
@@ -90,7 +100,11 @@ function Post() {
                 name="body"/>
             
             <br/>
-            <button onClick={makePost}>Submit</button>
+            <button onClick={() => {
+                makePost()
+                navigate('/timeline')
+                
+                }}>Submit</button>
         </>
     );
 }
