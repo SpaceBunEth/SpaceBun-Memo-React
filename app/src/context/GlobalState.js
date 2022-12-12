@@ -7,10 +7,17 @@ import React, {
   import jwtDecode from 'jwt-decode'
   
   let user = JSON.parse(localStorage.getItem('user'))
+
   
   const initialState = {
     currentUser: user ? jwtDecode(user.access) : null,
-    currentUserToken: user ? user.access : null
+    currentUserToken: user ? user.access : null,
+    currentThread: null,
+    mainUser: null,
+    Action: 0,
+    postReply:false,
+    userSearch: null
+    
   }
   
   const GlobalStateContext = createContext(initialState);
