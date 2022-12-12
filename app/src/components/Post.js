@@ -3,6 +3,7 @@ import { useGlobalState } from "../context/GlobalState";
 import React, { useState, useEffect } from "react";
 import request from '../services/api.request'
 import { useNavigate } from 'react-router-dom';
+import '../App.css';
 
 
 function Post() {
@@ -76,19 +77,10 @@ function Post() {
 
     return(
         <>
-            <h1>Post</h1>
+            {/* <h1>Post</h1>
 
 
-            <div className="dropdown">
-            <a className="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {topicName}
-            </a>
 
-            <ul className="dropdown-menu">
-                {topicArr}
-            </ul>
-            </div>
-            
 
             <label htmlFor="body">Body:</label><br/>
             <input 
@@ -100,13 +92,67 @@ function Post() {
                 name="body"/>
             
             <br/>
-            <button onClick={() => {
-                makePost()
-                navigate('/timeline')
-                
-                }}>Submit</button>
+ */}
+
+
+
+        <div className="container px-5 text-center">
+            <div className="row gx-5 g-2 justify-content-center">
+                <div className="col-8 ">
+            <div className="card text-center">
+            <div className="mybg2">
+                <div className="card-header">
+                    Create A Post
+                </div>
+            </div>
+            
+            <div className="nav-flex-container-style">
+                <div className="card-body">
+                    <h5 className="card-title">Special A Topic</h5>
+
+                    <div className="dropdown">
+                        <button className="btn  dropdown-toggle btn-outline-secondary m-3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <b>{topicName}</b>
+                        </button>
+
+                        <ul className="dropdown-menu">
+                            {topicArr}
+                        </ul>
+                    </div>
+            
+
+                        <div className="input-group" onChange={(e)=>{
+                                setBody(e.target.value)
+                            }}>
+                            {/* <span className="input-group-text">With textarea</span> */}
+                            <textarea className="form-control" aria-label="With textarea"></textarea>
+                        </div>
+
+                        <button className="btn btn-outline-secondary nav-button m-3" onClick={() => {
+                            makePost()
+                            navigate('/timeline')
+                            
+                        }}><b>Submit</b></button>
+                        </div>
+            </div>
+
+            <div className="mybg2">
+                <div className="card-footer text-muted">
+                    UserID: {state.currentUser.user_id}
+                </div>
+            </div>
+            
+            </div>
+            </div>
+            </div>
+            </div>
         </>
     );
 }
 
 export default Post
+
+
+{/* <div className="container px-5 text-center"></div>
+<div className="row gx-5 g-2">
+<div className="col-12 "> */}

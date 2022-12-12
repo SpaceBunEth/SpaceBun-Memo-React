@@ -76,7 +76,7 @@ function NavBar() {
 
     <nav className="navbar navbar-expand-md navbar-light nav-flex-container-style p-1 m-5" aria-label="Third navbar example">
     <div className="container-fluid">
-      {/* <a className="navbar-brand">SpaceBun Memo</a> */}
+      {/* <h1 className="navbar-brand p-0 m-0">SpaceBun Memo</h1> */}
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>

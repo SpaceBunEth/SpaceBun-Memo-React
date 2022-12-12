@@ -3,6 +3,7 @@ import { useGlobalState } from "../context/GlobalState";
 import React, { useState, useEffect } from "react";
 import request from '../services/api.request'
 import SearchResult from './SearchResult'
+import '../App.css';
 
 function Search() {
 
@@ -41,7 +42,7 @@ function Search() {
                 name="body"/>
             
             <br/>
-            <button onClick={getSearch}>Search</button>
+            <button className="btn btn-outline-secondary nav-button" onClick={getSearch}>Search</button>
             {userList.length > 0 ? <SearchResult props={userList}></SearchResult> : <>Null Results</>}
             
         </>

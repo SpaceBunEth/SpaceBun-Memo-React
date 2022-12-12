@@ -10,6 +10,23 @@ function UserProfile(props) {
     const [posts, setPosts] = useState();
     console.log(state)
     
+    useEffect(() => {
+        console.log('new render', state.VisitUser)
+
+    }, [state.VisitUser])
+
+    // useEffect(() => {
+    //     async function getComments(){
+    //         let options = {
+    //             url: userURL,
+    //             method: 'GET',
+
+    //         }
+    //         let resp = await request(options)
+    //         setPostUser(resp.data)
+    //     }
+    //     getComments()
+    // }, [state.postReply])
 
     const user = state.VisitUser
     console.log("VisitUser", state.VisitUser)
@@ -57,7 +74,7 @@ function UserProfile(props) {
             
         }
         getUserPosts()
-    }, [])
+    }, [state.VisitUser])
 
     const userPosts = []
 
@@ -71,25 +88,34 @@ function UserProfile(props) {
                 <div className="col-8">
         
                     <div className="card text-center m-2">
-                    <div className="card-header">
-                    Original Poster: 
-                    
-                    <Link to="/userprofile" onClick={() => {dispatch({...state, VisitUser : posts[key].author})}}>{posts[key].author.username}</Link>, 
-                    
-                        
-        
+                        <div className="mybg2">
+                            <div className="card-header">
+                            
+                            <h5>
+                                Original Poster: 
+                            
+                                <Link to="/userprofile" onClick={() => {dispatch({...state, VisitUser : posts[key].author})}}>{posts[key].author.username}</Link>, 
+                            </h5>
+                            
+                            </div>
+                        </div>
+
+                    <div className="nav-flex-container-style">
+                        <div className="card-body">
+                            <p className="card-text">{posts[key].body}</p>
+                        </div>
                     </div>
-                    <div className="card-body">
-                        <p className="card-text">{posts[key].body}</p>
-                    </div>
-                    <div className="card-footer text-muted">
-                    {/* <Link to="/userprofile" onClick={() => {
-                        console.log('posts',posts[key].author)
-                        dispatch(state.VisitUser = posts[key].author)
-                        
-                    }}>Profile: {posts[key].id}<br/></Link> */}
-                    Created : {posts[key].created}
-                    </div>
+
+                        <div className="mybg2">
+                            <div className="card-footer text-muted p-0">
+                            {/* <Link to="/userprofile" onClick={() => {
+                                console.log('posts',posts[key].author)
+                                dispatch(state.VisitUser = posts[key].author)
+                                
+                            }}>Profile: {posts[key].id}<br/></Link> */}
+                            <p className="m-0"><small>Created : {posts[key].created}</small></p>
+                            </div>
+                        </div>
                     </div>
                     
                 </div>
@@ -114,12 +140,17 @@ function UserProfile(props) {
 
     return(
         <>
-            Other User Profile
-            <h1>{mapObj()}</h1>
-            <h3>{getUserPosts()}</h3>
+            <div className="container px-5 text-center">
+            <div>{mapObj()}</div>
+            <div>{getUserPosts()}</div>
+            </div>
 
         </>
     );
 }
 
 export default UserProfile;
+
+
+// <div className="row gx-5 g-2"></div>
+// <div className="col-12 "></div>

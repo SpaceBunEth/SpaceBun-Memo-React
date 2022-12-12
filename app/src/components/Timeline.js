@@ -94,3 +94,7 @@ return (
 }
 
 export default Timeline;
+
+{/* <div className="container px-5 text-center"></div>
+<div className="row gx-5 g-2">
+<div className="col-12 "> */}
